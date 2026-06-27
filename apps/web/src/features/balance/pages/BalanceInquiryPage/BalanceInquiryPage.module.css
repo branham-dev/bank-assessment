@@ -1,0 +1,11 @@
+.page {
+    background-color: #F8FAFC;
+    min-height: 100vh;
+    padding: 1px 0 0;
+
+    h1 {
+        text-align: center;
+        margin: 0.75rem 0 1.5rem;
+        color: #2563EB;
+    }
+}
