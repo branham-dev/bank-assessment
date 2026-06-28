@@ -2,6 +2,13 @@
     background-color: #F8FAFC;
     min-height: 100vh;
     padding: 1px 0 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    div {
+        width: 100%;
+    }
 
     h1 {
         text-align: center;

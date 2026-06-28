@@ -7,7 +7,13 @@ export type Inputs = {
   narration: string;
 };
 
-export type BalanceResponse = Inputs & {
+export type BalancePayload = Inputs & {
     actualBalance: number;
     availableBalance: number;
+}
+
+export type BalanceResponse = {
+    success: boolean;
+    message: string;
+    data: BalancePayload;
 }

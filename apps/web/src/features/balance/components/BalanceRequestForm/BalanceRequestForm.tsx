@@ -1,6 +1,6 @@
 import { useForm, type SubmitHandler } from 'react-hook-form';
 import styles from './BalanceRequestForm.module.css';
-import type { Inputs } from '../../types';
+import type { BalancePayload, Inputs } from '../../types';
 import { useFetchBalanceMutation } from '../../api';
 
 
@@ -13,7 +13,11 @@ const initialValues: Inputs = {
   narration: "Payment for Order 8923"
 };
 
-const BalanceRequestForm = () => {
+type BalanceRequestFormProps = {
+  onSuccess: (balance: BalancePayload) => void;
+};
+
+const BalanceRequestForm = ({ onSuccess }: BalanceRequestFormProps) => {
   const [fetchBalance] = useFetchBalanceMutation();
 
   const {register, handleSubmit} = useForm<Inputs>({
@@ -24,6 +28,7 @@ const BalanceRequestForm = () => {
     console.log(payload);
     try {
       const response = await fetchBalance(payload).unwrap();
+      onSuccess(response.data);
       console.log('Balance Fetching', response);
     } catch (error) {
       console.error('Balance Fetching', error);
@@ -46,12 +51,16 @@ const BalanceRequestForm = () => {
 
         <label htmlFor="reference">
           <span>Transaction Reference</span>
-          <input type="text" {...register('transactionReference')}/>
+          <input type="text"
+          readOnly={true}
+          {...register('transactionReference')}/>
         </label>
 
         <label htmlFor="code">
           <span>Transaction Code</span>
-          <input type="text" {...register('transactionCode')}/>
+          <input type="text"
+          readOnly={true}
+          {...register('transactionCode')}/>
         </label>
 
         <label htmlFor="amount">
