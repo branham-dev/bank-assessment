@@ -8,7 +8,7 @@ const app = new Hono();
 app.use(
   '*',
   cors({
-    origin: 'http://localhost:5175'
+    origin: ['http://localhost:5175', 'https://bankbalance.branhamkaranja.com']
   })
 )
 
